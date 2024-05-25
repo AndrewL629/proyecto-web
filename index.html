@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilo.css">
+    <<title>Tienda Mayerly</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+</head>
+<body>
+ <div class="slider">
+<div class="slider--inner">
+    <img src="portada1.jpg"/>
+    <img src="portada2.jpg"/>
+    <img src="portada3.jpg"/>
+</div>
+</div>
+
+    <section class="contenido">
+        <div class="mostrador" id="mostrador">
+            <div class="fila">
+                <div class="item" onclick="cargar(this)">
+                    <div class="contenedor-foto">
+                        <img src="ImagenExfoliante.jpg" alt="">
+                    </div>
+                    <p class="descripcion">EXFOLIANTE CORPORAL</p>
+                    <span class="precio">30.000</span>
+                </div>
+                <div class="item" onclick="cargar(this)">
+                    <div class="contenedor-foto">
+                        <img src="CremaCorporal.jpg" alt="">
+                    </div>
+                    <p class="descripcion" id>CREMA HIDRATANTE </p>
+                    <span class="precio">$ 45.000</span>
+                </div>
+                <div class="item" onclick="cargar(this)">
+                    <div class="contenedor-foto">
+                        <img src="LocionHumor.jpg" alt="">
+                    </div>
+                    <p class="descripcion">LOCION HUMOR PROPRIO
+                    </p>
+                    <span class="precio">$ 85.000</span>
+                </div>
+                <div class="item" onclick="cargar(this)">
+                    <div class="contenedor-foto">
+                        <img src="Jabones.jpg" alt="">
+                    </div>
+                    <p class="descripcion">JABON EKOS SET X 4</p>
+                    <span class="precio">$ 35.000</span>
+                </div>
+            </div>
+            <div class="fila">
+                <div class="item" onclick="cargar(this)">
+                    <div class="contenedor-foto">
+                        <img src="SplasTodo.jpg" alt="">
+                    </div>
+                    <p class="descripcion">BODY SPLASH FRAMBUESA Y PIMIENTA</p>
+                    <span class="precio">$ 40.000</span>
+                </div>
+                <div class="item" onclick="cargar(this)">
+                    <div class="contenedor-foto">
+                        <img src="LocionKajak.jpg" alt="">
+                    </div>
+                    <p class="descripcion">LOCION KAJAK</p>
+                    <span class="precio">$ 85.000</span>
+                </div>
+                <div class="item" onclick="cargar(this)">
+                    <div class="contenedor-foto">
+                        <img src="JabonPimienta.jpg" alt="">
+                    </div>
+                    <p class="descripcion">SET X 5 JABON FRAMBUESA Y PIMIENTA ROJA</p>
+                    <span class="precio">$ 30.000</span>
+                </div>
+                <div class="item" onclick="cargar(this)">
+                    <div class="contenedor-foto">
+                        <img src="SetSeve.jpg" alt="">
+                    </div>
+                    <p class="descripcion">SET SEVE DESODORANTE Y OLEO CORPORAL</p>
+                    <span class="precio">$ 110.000</span>
+                </div>
+            </div> 
+        </div>
+        <!-- CONTENEDOR DEL ITEM SELECCIONADO -->
+        <div class="seleccion" id="seleccion">
+            <div class="cerrar" onclick="cerrar()">
+                &#x2715
+            </div>
+            <div class="info">
+                <img src="img/1.png" alt="" id="img">
+                <h2 id="modelo">NIKE MODEL 1</h2>
+                <p id="descripcion">Descripción Modelo 1</p>
+
+                <span class="precio" id="precio">$ 130</span>
+
+                <div class="fila">
+                    <div class="size">
+                        <label for="">Cantidad</label>
+                        <select name="" id="">
+                            <option value="">1</option>
+                            <option value="">2</option>
+                            <option value="">3</option>
+                            <option value="">4</option>
+                            <option value="">5</option>
+                        </select>
+                    </div>
+                    <button>AGREGAR AL CARRITO</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
