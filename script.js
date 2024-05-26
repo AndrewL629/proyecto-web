@@ -1,49 +1,47 @@
-let mostrador = document.getElementById("mostrador");
-let seleccion = document.getElementById("seleccion");
-let imgSeleccionada = document.getElementById("img");
-let modeloSeleccionado = document.getElementById("modelo");
-let descripSeleccionada = document.getElementById("descripcion");
-let precioSeleccionado = document.getElementById("precio");
-let sliderInner = document.querySelector(".slider--inner");
-let index = 1;
-let images = sliderInner.querySelectorAll("image");
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('userForm');
+    const userList = document.getElementById('userList');
 
-setInterval (function (){
-    let percentage = index * -100;
-    sliderInner.style.transform = "translateX("+percentage+"%)";
-    index++;
-    if (index > (images.length - 1)){
-        index = 0;
-    }
-},3000);
+    const getUsersFromLocalStorage = () => JSON.parse(localStorage.getItem('users') || '[]');
+    const setUsersToLocalStorage = (users) => localStorage.setItem('users', JSON.stringify(users));
 
+    const renderUserList = () => {
+        userList.innerHTML = getUsersFromLocalStorage().map(user => `
+            <li class="user-item">
+                ${user.nombre} ${user.apellido} (${user.correo})
+                <button class="delete" data-id="${user.id}">Eliminar</button>
+            </li>
+        `).join('');
+    };
 
-function cargar(item){
-    quitarBordes();
-    mostrador.style.width = "60%";
-    seleccion.style.width = "40%";
-    seleccion.style.opacity = "1";
-    item.style.border = "2px solid red";
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const user = {
+            id: Date.now(),
+            nombre: form.nombre.value,
+            apellido: form.apellido.value,
+            correo: form.correo.value,
+            contraseña: form.contraseña.value,
+        };
+        if (form.contraseña.value !== form.confirmarContraseña.value) {
+            alert('Las contraseñas no coinciden');
+            return;
+        }
+        const users = getUsersFromLocalStorage();
+        users.push(user);
+        setUsersToLocalStorage(users);
+        renderUserList();
+        form.reset();
+    });
 
-    imgSeleccionada.src = item.getElementsByTagName("img")[0].src;
+    userList.addEventListener('click', (e) => {
+        if (e.target.classList.contains('delete')) {
+            const userId = e.target.dataset.id;
+            const users = getUsersFromLocalStorage().filter(user => user.id != userId);
+            setUsersToLocalStorage(users);
+            renderUserList();
+        }
+    });
 
-    modeloSeleccionado.innerHTML =  item.getElementsByTagName("p")[0].innerHTML;
-
-    descripSeleccionada.innerHTML = "Selecciona la cantidad que deseas adquirir de tu producto.";
-
-    precioSeleccionado.innerHTML =  item.getElementsByTagName("span")[0].innerHTML;
-
-
-}
-function cerrar(){
-    mostrador.style.width = "100%";
-    seleccion.style.width = "0%";
-    seleccion.style.opacity = "0";
-    quitarBordes();
-}
-function quitarBordes(){
-    var items = document.getElementsByClassName("item");
-    for(i=0;i <items.length; i++){
-        items[i].style.border = "none";
-    }
-}
+    renderUserList();
+});
